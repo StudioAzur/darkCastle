@@ -1,0 +1,144 @@
+body {
+  background-color: black;
+}
+#castle {
+  margin-left: 25%;
+  margin-top: 30px;
+}
+
+td,
+tr {
+  height: 60px;
+  width: 60px;
+}
+
+img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+td img {
+  pointer-events: none;
+}
+
+#fightArea {
+  display: flex;
+  background-color: black;
+  height: 160px;
+  align-items: center;
+}
+
+#areaPlayer1 {
+  background-color: black;
+  width: 50%;
+  margin-right: 30px;
+}
+
+#areaPlayer2 {
+  background-color: black;
+  width: 50%;
+}
+
+li {
+  list-style-type: none;
+  color: white;
+}
+
+.vampire {
+  position: absolute;
+}
+
+.floor {
+  position: absolute;
+}
+
+.weapon {
+  position: absolute;
+}
+
+.rock {
+  position: absolute;
+}
+
+.container {
+  height: 60px;
+  width: 60px;
+  position: relative;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+.move {
+  position: relative;
+}
+
+.move::before {
+  content: "";
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(83, 84, 159, 0.7);
+  z-index: 10;
+}
+
+.move:hover::before {
+  content: "";
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 19, 45, 0.7);
+  z-index: 10;
+}
+
+.joueurActif {
+  float: right;
+  padding: 20px;
+}
+
+.joueurActif img {
+  width: 150px;
+  height: 150px;
+}
+
+progress {
+  display: block;
+  margin-top: 5px;
+}
+
+h1 {
+  padding: 15px;
+}
+
+.available {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  margin-right: 15px;
+  padding: 20px;
+  background-color: #6A6BC7;
+  width: 150px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+
+
+.available:hover{
+  background-color:#4d4fa7;
+  cursor: pointer;
+}
+#buttonArea{
+  margin-left: 35%;
+  margin-top: 40px;
+}
