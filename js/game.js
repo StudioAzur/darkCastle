@@ -35,11 +35,11 @@ export default class Game {
     this.map = new Map(this.listPlayer, this.listWeapon);
     this.initGame();
   }
-  // fonction va contenir un await
+  // fonction va contenir un await qui va attendre une Promesse comme valeur de retour
   async gameLoop() {
     while (!this.gameOver) {
-      if (!this.map.playerAside(1)) {
-        console.log("not aside");
+      if (!this.map.isPlayerAside(1)) {
+        //console.log("not aside");
         let position = this.getCurrentTurnPlayer().position;
         this.map.highlight(position.x, position.y);
         let clickValide = await this.map.handleClick();
@@ -48,7 +48,7 @@ export default class Game {
           this.switchTurnPlayer();
         }
       } else {
-        console.log("aside");
+        //console.log("aside");
         this.map.printAction();
         await this.map.handleAction();
         this.map.deleteAction();

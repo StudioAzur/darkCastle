@@ -34,23 +34,6 @@ export default class Map {
       $("#castle").append(trElt);
       // GENERATION DES COLONNES
       for (let x = 0; x < this.column; x++) {
-        /* const cell = document.querySelector(`#${x}-${y}`);
-        const cellContent = this.map[x][y].getDisplayContent();
-          if(cellContent){
-            //On doit afficher quelque chose
-            if(cell.innerHTML != cellContent){
-              // La case affiché à un contenu différent de celui sensé être affiché.
-              cell.innerHTML = cellContent;
-            }
-            
-          }else{
-            //La case est sensé être vide
-            if(cell.innerHTML){
-              // La case affiché contient quelque chose, on supprime ce contenu
-              cell.innerHTML = "";
-            }
-          }
-        */
         const tdElt = document.createElement("td");
         tdElt.id = `${x}-${y}`;
         // RECUPERE LA VALEUR COURANTE DE TILE
@@ -135,7 +118,6 @@ export default class Map {
       let position = this.generateRandomPosition();
       let currentTile = this.map[position.x][position.y];
       currentTile.setRock(new Rock());
-      /* currentTile.show(currentTile.getRock().image); */
     }
   }
 
@@ -237,10 +219,11 @@ export default class Map {
 
   movePlayer(player, position) {
     if (this.map[position.x][position.y].getWeapon()) {
-      console.log("found Weapon");
+      //console.log("found Weapon");
       const item = this.map[position.x][position.y].getWeapon();
       const playerItem = player.held;
-      player.held = item; // nouvelle arme
+      player.held = item; // nouvelle arme tenu par le joueur
+      // On assigne la nouvelle arme
       this.map[position.x][position.y].setWeapon(playerItem);
     }
     this.map[player.position.x][player.position.y].setPlayer(null);
@@ -294,7 +277,8 @@ export default class Map {
   clearHighlight() {
     $("td").off("click");
   }
-  playerAside(range) {
+  //Vérifie si les joueurs sont côte à côte 
+  isPlayerAside(range) {
     // renommer
     const player1 = this.listPlayer[0].position;
     const player2 = this.listPlayer[1].position;
@@ -326,7 +310,7 @@ export default class Map {
       this.handleShield(resolve);
     });
   }
-
+  // Promesse attaque
   handleAttack(resolve) {
     $("#attack").on("click", (e) => {
       let player = window.Game.getCurrentTurnPlayer();
@@ -334,20 +318,19 @@ export default class Map {
       let degats = 0;
       degats = player.held.degats;
       let lifeRest = 0;
-      if(opponent.shield == 1){
+      if (opponent.shield == 1) {
         lifeRest = opponent.life -= degats / 2;
         opponent.shield = 0;
-      }
-      else{
+      } else {
         lifeRest = opponent.life -= degats;
       }
-      if(player.name ==  "Obscura"){
+      if (player.name == "Obscura") {
         $("#healthJ2").val(lifeRest);
-      }else{
+      } else {
         $("#healthJ1").val(lifeRest);
       }
-      console.log()
-      if(lifeRest <= 0){
+      console.log();
+      if (lifeRest <= 0) {
         this.gameOver();
       }
       resolve();
@@ -357,8 +340,8 @@ export default class Map {
   handleShield(resolve) {
     $("#shield").on("click", (e) => {
       let player = window.Game.getCurrentTurnPlayer();
-      let degats = 0; 
-      player.shield = 1
+      let degats = 0;
+      player.shield = 1;
       resolve();
     });
   }
@@ -367,9 +350,9 @@ export default class Map {
     // supprimer les boutons pour le joueur suivant
     $(".available").remove();
   }
-  gameOver(){
+  gameOver() {
     let activePlayer = window.Game.getCurrentTurnPlayer();
-    alert(activePlayer.name +  " gagne la partie");
+    alert(activePlayer.name + " gagne la partie");
     location.reload();
   }
 }

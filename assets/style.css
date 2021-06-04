@@ -37,6 +37,7 @@ td img {
   background-color: black;
   width: 50%;
   margin-right: 30px;
+  border : 10px solid green;
 }
 
 #areaPlayer2 {
